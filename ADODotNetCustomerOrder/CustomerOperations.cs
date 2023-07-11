@@ -330,5 +330,38 @@ namespace ADODotNetCustomerOrder
                 }
             }
         }
+
+        public static void UpdateCustomerDetailsUsingTransaction()
+        {
+            using (con)
+            {
+                con.Open();
+                SqlTransaction transaction = con.BeginTransaction();
+
+                try
+                {
+                    string query = "UPDATE Orders SET Quantity = '100' WHERE OrderId = 3";
+                    SqlCommand cmd = new SqlCommand(query, con, transaction);
+                    cmd.ExecuteNonQuery();
+
+                    string query1 = "UPDATE Customer SET Address = 'PondiCherry' WHERE Customer_Id = 6";
+                    cmd = new SqlCommand(query1, con, transaction);
+                    cmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    Console.WriteLine("Transaction Committed");
+
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Transaction RollBack" + e.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
     }
 }

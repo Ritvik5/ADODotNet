@@ -19,7 +19,8 @@
             //CustomerOperations.DisplayCustomerUsingTransaction();
             //CustomerOperations.DisplayOrderUsingTransactions();
             //CustomerOperations.DeleteCustomerDetailUsingTransaction();
-            CustomerOperations.DeleteOrdersDetailUsingTransaction();
+            //CustomerOperations.DeleteOrdersDetailUsingTransaction();
+            CustomerOperations.UpdateCustomerDetailsUsingTransaction();
         }
     }
 }
