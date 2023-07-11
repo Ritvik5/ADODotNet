@@ -82,5 +82,26 @@ namespace ADODotNetCustomerOrder
                 con.Close();
             }
         }
+
+        public static void DeleteRecordFromTable()
+        {
+            try
+            {
+                string query = "DELETE FROM Customer WHERE Customer_Id = 7";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Data deleted from the table.");
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("Somethiing went Wrong." + e);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

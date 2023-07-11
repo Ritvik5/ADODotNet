@@ -8,8 +8,9 @@
 
             //CustomerOperations.CheckConnection();
             //CustomerOperations.InsertIntoTable();
+            CustomerOperations.DeleteRecordFromTable();
             CustomerOperations obj = new CustomerOperations();
-            obj.Display();
+            //obj.Display();
         }
     }
 }
