@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Threading.Tasks.Sources;
 
 namespace ADODotNetCustomerOrder
 {
@@ -36,6 +36,48 @@ namespace ADODotNetCustomerOrder
 
                 Console.WriteLine("Somethiing went Wrong."+e);
             }finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool Display()
+        {
+            try
+            {
+                using(con)
+                {
+                    Customer model = new Customer();
+                    string query = "SELECT * FROM Customer";
+                    SqlCommand command = new SqlCommand(query, con);
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if(reader.HasRows)
+                    {
+                        Console.WriteLine("-----------Data-------------");
+                        while(reader.Read())
+                        {
+                            model.Customer_Id = Convert.ToInt32(reader["Customer_Id"]);
+                            model.Customer_Name = Convert.ToString(reader["Customer_Name"]);
+                            model.PhoneNumber = Convert.ToString(reader["PhoneNumber"]);
+                            model.Address = Convert.ToString(reader["Address"]);
+                            model.Country = Convert.ToString(reader["Country"]);
+                            model.Pincode = Convert.ToString(reader["Pincode"]);
+                            model.Salary = Convert.ToDecimal(reader["Salary"]);
+                            Console.WriteLine("Customer_Id: {0}\nCustomer_Name: {1}\nPhoneNumber: {2}\nAddress: {3}\nCountry: {4}\nPincode: {5}\nSalary: {6}\n",
+                                               model.Customer_Id,model.Customer_Name,model.PhoneNumber,model.Address,model.Country,model.Pincode,model.Salary);
+                        }
+                    }
+                    return true;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went Wrong"+e);
+                return false;
+            }
+            finally
             {
                 con.Close();
             }

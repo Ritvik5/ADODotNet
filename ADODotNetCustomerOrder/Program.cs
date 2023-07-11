@@ -7,7 +7,9 @@
             Console.WriteLine("Welcome To ADO.net\n");
 
             //CustomerOperations.CheckConnection();
-            CustomerOperations.InsertIntoTable();
+            //CustomerOperations.InsertIntoTable();
+            CustomerOperations obj = new CustomerOperations();
+            obj.Display();
         }
     }
 }
