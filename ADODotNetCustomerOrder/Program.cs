@@ -15,7 +15,9 @@
             //obj.Display();
             //obj.InsertUsingStoredProcedure(custbj);
             //CustomerOperations.InsertCustomerTableUsingTransaction();
-            CustomerOperations.InsertOrdersTableUsingTransaction();
+            //CustomerOperations.InsertOrdersTableUsingTransaction();
+            //CustomerOperations.DisplayCustomerUsingTransaction();
+            CustomerOperations.DisplayOrderUsingTransactions();
         }
     }
 }
