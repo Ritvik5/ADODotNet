@@ -273,5 +273,62 @@ namespace ADODotNetCustomerOrder
             }
         }
 
+        public static void DeleteCustomerDetailUsingTransaction()
+        {
+            using (con)
+            {
+                con.Open();
+                SqlTransaction transaction = con.BeginTransaction();
+
+                try
+                {
+                    string query = "DELETE FROM Customer WHERE Customer_id = 10";
+                    SqlCommand cmd = new SqlCommand(query, con, transaction);
+                    cmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    Console.WriteLine("Transaction Committed");
+
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Transaction RollBack" + e.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        public static void DeleteOrdersDetailUsingTransaction()
+        {
+            using (con)
+            {
+                con.Open();
+                SqlTransaction transaction = con.BeginTransaction();
+
+                try
+                {
+                    string query = "DELETE FROM Orders WHERE OrderId = 12";
+                    SqlCommand cmd = new SqlCommand(query, con, transaction);
+                    cmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    Console.WriteLine("Transaction Committed");
+
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Transaction RollBack" + e.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
     }
 }
