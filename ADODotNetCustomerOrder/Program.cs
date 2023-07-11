@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To ADO.net");
+            Console.WriteLine("Welcome To ADO.net\n");
+
+            //CustomerOperations.CheckConnection();
+            CustomerOperations.InsertIntoTable();
         }
     }
 }
